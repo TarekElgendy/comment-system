@@ -1,0 +1,199 @@
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Comment Form */
+#commentForm {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#commentForm input,
+#commentForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#commentForm button {
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#commentForm button:hover {
+    background: #0056b3;
+}
+
+  /* Add this CSS for the timestamp and reaction count */
+  .comment-meta {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.reaction-count {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* Comments Section */
+#comments {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.comment {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment strong {
+    color: #333;
+}
+
+.comment p {
+    margin: 10px 0;
+    color: #555;
+}
+
+/* Reactions */
+.reactions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.reaction-icon {
+    cursor: pointer;
+    font-size: 13px;
+    transition: transform 0.2s;
+}
+
+.reaction-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Replies */
+.replies {
+    margin-left: 20px;
+    border-left: 2px solid #ddd;
+    padding-left: 10px;
+}
+
+.reply {
+    margin-top: 10px;
+}
+
+.reply strong {
+    color: #333;
+}
+
+.reply p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Reply Form */
+.reply-form {
+    margin-top: 10px;
+}
+
+.reply-form input,
+.reply-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.reply-form button {
+    padding: 8px 16px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.reply-form button:hover {
+    background: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #commentForm,
+    #comments {
+        padding: 10px;
+    }
+
+    .reactions {
+        gap: 8px;
+    }
+
+    .reaction-icon {
+        font-size: 18px;
+    }
+}
+/* Add this CSS for the timestamp, reaction count, and delete button */
+.comment-meta {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.reaction-count {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.reaction-icon {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.delete-button {
+    background: #dc3545 !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 12px !important;
+    float: right;
+}
+
+.delete-button:hover {
+    background: #c82333;
+}
+ 
