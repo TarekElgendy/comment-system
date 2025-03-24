@@ -197,3 +197,22 @@ h1 {
     background: #c82333;
 }
  
+.emoji-drawer {
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    background: white !important;
+    border: 1px solid #ccc !important;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 10;
+}
+
+.emoji-container:hover .emoji-drawer {
+    opacity: 1;
+    visibility: visible;
+}

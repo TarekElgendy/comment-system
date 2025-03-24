@@ -34,8 +34,17 @@ $reply = new Reply($database->getConnection());
           ?>
         
         <input type="text" name="user_name"  value="Tarke Gamal" placeholder="Your Name" required>
-        <textarea name="comment_text" placeholder="Write a comment..." required></textarea>
-        <button type="submit">Post Comment</button>
+        <textarea name="comment_text"   id="comment-input"  placeholder="Write a comment..." required></textarea>
+        <div class="emoji-container">
+            <button type="button" class="emoji-button">😊</button>
+            <div class="emoji-drawer">
+                <div class="emoji" onclick="addEmoji(this.innerHTML)">👍</div>
+                <div class="emoji" onclick="addEmoji(this.innerHTML)">👏</div>
+                <div class="emoji" onclick="addEmoji(this.innerHTML)">💡</div>
+                <div class="emoji" onclick="addEmoji(this.innerHTML)">❤️</div>
+            </div>
+            <button type="submit">Post Comment</button>
+        </div>
     </form>
 
     <!-- Display Comments -->
@@ -196,6 +205,102 @@ function deleteReply(replyId) {
     }
 }
 
+    </script>
+
+<script>
+        function addEmoji(emoji) {
+            let inputEle = document.getElementById('comment-input');
+            inputEle.value += emoji;
+        }
+
+        function submitComment() {
+            let nameInput = document.getElementById('commenter-name');
+            let input = document.getElementById('comment-input');
+            let commentText = input.value.trim();
+            let commenterName = nameInput.value.trim() || "Anonymous";
+
+            if (commentText === "") return;
+
+            let commentId = "comment-" + Date.now();
+            let timestamp = new Date().toLocaleString();
+            let commentHTML = `
+                <div class="comment" id="${commentId}">
+                    <div class="comment-header">
+                        <span><strong>${commenterName}</strong> • ${timestamp}</span>
+                        <button class="delete-btn" onclick="deleteComment('${commentId}')">🗑 Delete</button>
+                    </div>
+                    <p class="comment-text">${commentText}</p>
+                    <div class="reactions">
+                        <span onclick="reactToComment('${commentId}', '👍')">👍</span>
+                        <span onclick="reactToComment('${commentId}', '❤️')">❤️</span>
+                        <span onclick="reactToComment('${commentId}', '👏')">👏</span>
+                        <span onclick="reactToComment('${commentId}', '💡')">💡</span>
+                    </div>
+                    <button class="reply-btn" onclick="toggleReplySection('${commentId}')">Reply</button>
+                    <div class="reply-section" id="reply-${commentId}">
+                        <input type="text" placeholder="Your Name" id="reply-name-${commentId}">
+                        <textarea rows="2" placeholder="Write a reply..."></textarea>
+                        <button onclick="submitReply('${commentId}')">Reply</button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById("comments-list").innerHTML += commentHTML;
+            input.value = "";
+            nameInput.value = "";
+        }
+
+        function reactToComment(commentId, emoji) {
+            let comment = document.getElementById(commentId);
+            let reactionsDiv = comment.querySelector(".reactions");
+
+            let existingReaction = reactionsDiv.querySelector(`span[data-reaction="${emoji}"]`);
+            if (existingReaction) {
+                let count = parseInt(existingReaction.getAttribute("data-count")) || 0;
+                count++;
+                existingReaction.innerHTML = `${emoji} (${count})`;
+                existingReaction.setAttribute("data-count", count);
+            } else {
+                let newReaction = document.createElement("span");
+                newReaction.innerHTML = `${emoji} (1)`;
+                newReaction.setAttribute("data-reaction", emoji);
+                newReaction.setAttribute("data-count", "1");
+                reactionsDiv.appendChild(newReaction);
+            }
+        }
+
+        function toggleReplySection(commentId) {
+            let replySection = document.getElementById(`reply-${commentId}`);
+            replySection.style.display = replySection.style.display === "block" ? "none" : "block";
+        }
+
+        function submitReply(commentId) {
+            let replySection = document.getElementById(`reply-${commentId}`);
+            let replyNameInput = document.getElementById(`reply-name-${commentId}`);
+            let replyInput = replySection.querySelector("textarea");
+            let replyText = replyInput.value.trim();
+            let replierName = replyNameInput.value.trim() || "Anonymous";
+
+            if (replyText === "") return;
+
+            let replyHTML = `
+                <div class="comment reply">
+                    <div class="comment-header">
+                        <span><strong>${replierName}</strong> • ${new Date().toLocaleString()}</span>
+                    </div>
+                    <p class="comment-text">${replyText}</p>
+                </div>
+            `;
+
+            replySection.innerHTML += replyHTML;
+            replyInput.value = "";
+            replyNameInput.value = "";
+        }
+
+        function deleteComment(commentId) {
+            let comment = document.getElementById(commentId);
+            comment.remove();
+        }
     </script>
 </body>
 
