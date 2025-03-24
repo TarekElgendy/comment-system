@@ -18,4 +18,6 @@ A fully functional comment system built using PHP, MySQL, and Object-Oriented Pr
 - **OOP**: PHP Classes for Database, Comments, Reactions, and Replies
 - **AJAX**: For dynamic updates without page reloads
 
+![Screenshot](screenshots/1.png)
+ 
  
