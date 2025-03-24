@@ -29,10 +29,6 @@ $reply = new Reply($database->getConnection());
 
     <!-- Comment Form -->
     <form id="commentForm">
-        <php
-             $USER_NAME="Tarke";
-          ?>
-        
         <input type="text" name="user_name"  value="Tarke Gamal" placeholder="Your Name" required>
         <textarea name="comment_text"   id="comment-input"  placeholder="Write a comment..." required></textarea>
         <div class="emoji-container">
@@ -112,7 +108,7 @@ $reply = new Reply($database->getConnection());
             })
                 .then(response => response.text())
                 .then(data => {
-               //     alert(data); // Show success or error message
+                //    alert(data); // Show success or error message
                     location.reload(); // Refresh the page to show the new comment
                 });
         });

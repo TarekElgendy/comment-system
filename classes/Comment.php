@@ -6,10 +6,9 @@ class Comment {
     public function __construct($db) {
         $this->db = $db;
     }
-
-    public function create($user_name, $comment_text) {
-        $stmt = $this->db->prepare("INSERT INTO comments (user_name, comment_text) VALUES (?, ?)");
-        $stmt->bind_param("ss", $user_name, $comment_text);
+    public function create($page_id, $user_id, $user_name, $comment_text) {
+        $stmt = $this->db->prepare("INSERT INTO comments (page_id, user_id, user_name, comment_text) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iiss", $page_id, $user_id, $user_name, $comment_text);
         return $stmt->execute();
     }
 
